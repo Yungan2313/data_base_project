@@ -5,6 +5,8 @@
         "random": "c",
         "string.h": "c",
         "typeindex": "c",
-        "typeinfo": "c"
+        "typeinfo": "c",
+        "linked_list.h": "c",
+        "basic.h": "c"
     }
 }

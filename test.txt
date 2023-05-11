@@ -1,1 +1,2 @@
-abcde fghij 1234 *****
+abcde fghij 200 9.0
+asdf asdfg 100 9.6
