@@ -33,14 +33,16 @@ void account(char* account_name){
     }
 }
 
-int similiar(){
+int similiar(char *corres_password, char *account_name){
     int k = 0, g = 0;
-    char str[2][21];
-    for (int i = 0; i < 2; i++){
-        gets(str[i]);
-        for (int j = 0; str[i][j] != '\0'; j++){
-            str[i][j] = tolower(str[i][j]);
-        }
+    for (int j = 0; *(corres_password + j) != '\0' && *(account_name + j) != '\0'; j++){
+        if (*(corres_password + j) < 'Z' && *(corres_password + j) > 'A' &&\
+            *(account_name + j) < 'Z' && *(account_name + j) > 'A' &&\
+            *(corres_password + j) < 'z' && *(corres_password + j) > 'a' &&\
+            *(account_name + j) < 'z' && *(account_name + j) > 'a'){
+                *(corres_password + j) = tolower(*(corres_password + j));
+                *(account_name + j) = tolower(*(account_name + j));
+            }
     }
     for (int j = 0; str[0][j] != '\0'; j++){
         k++;
