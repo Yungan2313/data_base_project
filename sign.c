@@ -53,14 +53,12 @@ int similiar(char *corres_password, char *account_name){
         *(tmpstring + j) = *(account_name + j);
     }
     *(tmpstring + k) = '\0';
-    for (int i = 1; i < 2; i++){
-        if (*(corres_password) != *(tmpstring)){
-                printf("No longest common prefix\n");
-                return 0;
-        }
-        for (int j = 0; *(corres_password + j) != '\0'; j++){
-            
-        }
+    if (*(corres_password) != *(tmpstring)){
+            printf("No longest common prefix\n");
+            return 0;
+    }
+    for (int j = 0; *(corres_password + j) != '\0'; j++){
+        
     }
     for (int j = 0; j < k; j++){
         printf("%c", *(tmpstring + j));
