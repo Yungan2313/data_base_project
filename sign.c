@@ -44,36 +44,26 @@ int similiar(char *corres_password, char *account_name){
                 *(account_name + j) = tolower(*(account_name + j));
             }
     }
-    for (int j = 0; str[0][j] != '\0'; j++){
+    for (int j = 0; *(account_name + j) != '\0'; j++){
         k++;
     }                
-    int str2[k + 1];
-    for (int j = 0; str[0][j] != '\0'; j++){
-        str2[j] = str[0][j];
+    char *tmpstring;
+    tmpstring = (char *)malloc(sizeof(char) * (k + 1));
+    for (int j = 0; *(account_name + j) != '\0'; j++){
+        *(tmpstring + j) = *(account_name + j);
     }
-    str2[k] = '\0';
+    *(tmpstring + k) = '\0';
     for (int i = 1; i < 2; i++){
-        if (str[i][0] != str2[0]){
-            printf("No longest common prefix\n");
-            return 0;
+        if (*(corres_password) != *(tmpstring)){
+                printf("No longest common prefix\n");
+                return 0;
         }
-        for (int j = 0; str[i][j] != '\0'; j++){
-            if (str[1][j] != str2[j]){
-                str2[j] = '\0';
-                k = j;
-                break;
-            }
-            if (i != 1 && str[i][j] != str2[j]){
-                g = j;
-                if (k != g){
-                    k = g;
-                }
-                break;
-            }
+        for (int j = 0; *(corres_password + j) != '\0'; j++){
+            
         }
     }
     for (int j = 0; j < k; j++){
-        printf("%c", str2[j]);
+        printf("%c", *(tmpstring + j));
     }
     return 0;
 }
