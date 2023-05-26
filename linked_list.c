@@ -30,6 +30,25 @@ void insert_back(struct linked_list **list,char food_name[],char store_name[],in
     new_node->score = score;
     *list = new_node;
 }
+void insert_front_acpd(struct acpd_list **list,char account[],char password[],char data_base_txt[]){
+    struct acpd_list *new_node = malloc(sizeof(struct acpd_list));
+    new_node->next = NULL;
+    strcpy(new_node->account,account);
+    strcpy(new_node->password,password);
+    strcpy(new_node->data_base_txt,data_base_txt);
+    if(*list == NULL){
+        *list = new_node;
+        return;
+    }
+    else{
+        struct acpd_list *now = *list;
+        while(now->next != NULL){
+            now = now->next;
+        }
+        now->next = new_node;
+        return;
+    }
+}
 /*struct linked_list *search(struct linked_list **list,char food_name[],char store_name[],int price,float score){
     struct linked_list *node = *list;
 
