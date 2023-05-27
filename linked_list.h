@@ -5,6 +5,7 @@ struct linked_list{
     char store_name[20];
     int  price;
     float score;
+    char comment_txt[20];
     struct linked_list *next;
 };
 struct acpd_list{
@@ -13,7 +14,7 @@ struct acpd_list{
     char data_base_txt[20];
     struct acpd_list *next;
 };
-void insert_front(struct linked_list **list,char food_name[],char store_name[],int price,float score);
+void insert_front(struct linked_list **list,char food_name[],char store_name[],int price,float score,char comment_txt[]);
 void insert_front_acpd(struct acpd_list **list,char account[],char password[],char data_base_txt[]);
 
 #endif

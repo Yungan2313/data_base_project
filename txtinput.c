@@ -34,13 +34,18 @@ struct linked_list *data_base_read(char txt[]){
     while(fgets(tempc,100,p)!=NULL){
         int temp = strlen(tempc);
         int count = 0;
-        char food_name[20],store_name[20];
+        char food_name[20],store_name[20],comment_txt[20]; 
         int price;
         float score;
-        tempc[temp-1] = '\0';
+        if(tempc[temp-1] != '\n'){
+            tempc[temp] = '\0';
+        }
+        else{
+            tempc[temp-1] = '\0';
+        }
         c[i] = strdup(tempc);
-        sscanf(c[i],"%s %s %d %f",food_name,store_name,&price,&score);
-        insert_front(&new_node,food_name,store_name,price,score);
+        sscanf(c[i],"%s %s %d %f %s",food_name,store_name,&price,&score,comment_txt);
+        insert_front(&new_node,food_name,store_name,price,score,comment_txt);
         i++;
     }
     fclose(p);

@@ -11,7 +11,7 @@ int main(){
     // printf("ok1\n");
     #ifdef DEBUG
     for(int i=0; list != NULL; i++){
-        printf("%d:%s %s %d %0.1f\n",i,list->food_name,list->store_name,list->price,list->score);
+        printf("%d:%s %s %d %0.1f %s\n",i,list->food_name,list->store_name,list->price,list->score,list->comment_txt);
         list = list->next;
     }
     // printf("ok\n");

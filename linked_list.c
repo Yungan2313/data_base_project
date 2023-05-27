@@ -1,11 +1,12 @@
 #include "basic.h"
 #include "linked_list.h"
 
-void insert_front(struct linked_list **list,char food_name[],char store_name[],int price,float score){
+void insert_front(struct linked_list **list,char food_name[],char store_name[],int price,float score,char comment_txt[]){
     struct linked_list *new_node = malloc(sizeof(struct linked_list));
     new_node->next = NULL;
     strcpy(new_node->food_name,food_name);
     strcpy(new_node->store_name,store_name);
+    strcpy(new_node->comment_txt,comment_txt);
     new_node->price = price;
     new_node->score = score;
     if(*list == NULL){
