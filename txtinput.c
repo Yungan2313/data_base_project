@@ -1,5 +1,6 @@
 #include "basic.h"
 #include "linked_list.h"
+#include "txtinput.h"
 // #define DEBUG 1
 
 static int line_count_txt(char txt[]){

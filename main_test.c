@@ -1,7 +1,9 @@
 #include "basic.h"
 #include "linked_list.h"
 #include "txtinput.h"
-#define DEBUG 1
+#include "action.h"
+// #define DEBUG 1
+#define DEBUG2 1
 int main(){
     struct linked_list *list = NULL;
     struct acpd_list *acpd_list = NULL;
@@ -21,5 +23,16 @@ int main(){
     }
     // printf("ok\n");
     #endif
+
+    #ifdef DEBUG2
+    int type,order;
+    scanf("%d %d",&type,&order);
+    list = sort_list(list,type,order);
+    for(int i=0; list != NULL; i++){
+        printf("%d:%10s %10s\t%4d\t%2.1f\t%10s\n",i,list->food_name,list->store_name,list->price,list->score,list->comment_txt);
+        list = list->next;
+    }
+    #endif
     // printf("ok2\n");
+
 }
