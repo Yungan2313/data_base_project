@@ -1,4 +1,5 @@
 #include "basic.h"
+#include "txtinput.h"
 
 //帳號：總字數限20、至少2個大寫2個小寫、要有數字、不可空白、不能跟其他帳號重複
 void account(char* account_name){
@@ -68,11 +69,13 @@ int similiar(char *corres_password, char *account_name){
 #endif
 
 //密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或相似(strstr、嚴格比對)
-void password(char *corres_password, char *account_name){
+void password(struct acpd_list **list, char *corres_password, char *account_name){
     int access = 0;
+    struct acpd_list *new_node = malloc(sizeof(struct acpd_list));
     corres_password = (char *)malloc(sizeof(char) * 21);
+    account_name = new_node->account;
+    corres_password = new_node->password;
     origin:while(access != 1){
-        fgets(corres_password, 21, stdin);
         if(corres_password == NULL){
             printf("Where is your account?\n");
             printf("Please try a new password");
@@ -99,4 +102,4 @@ void password(char *corres_password, char *account_name){
         }
         access = 1;
     }
-}
+    }
