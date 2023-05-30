@@ -32,7 +32,7 @@ void account(char* account_name){
         }
     }
 }
-
+#ifdef DEBUG
 int similiar(char *corres_password, char *account_name){
     int k = 0, g = 0;
     for (int j = 0; *(corres_password + j) != '\0' && *(account_name + j) != '\0'; j++){
@@ -65,6 +65,7 @@ int similiar(char *corres_password, char *account_name){
     }
     return 0;
 }
+#endif
 
 //密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或相似(函式、嚴格比對)
 void password(char *corres_password, char *account_name){
