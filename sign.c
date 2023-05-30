@@ -67,7 +67,7 @@ int similiar(char *corres_password, char *account_name){
 }
 #endif
 
-//密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或相似(函式、嚴格比對)
+//密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或相似(strstr、嚴格比對)
 void password(char *corres_password, char *account_name){
     int access = 0;
     corres_password = (char *)malloc(sizeof(char) * 21);
@@ -84,13 +84,18 @@ void password(char *corres_password, char *account_name){
             goto origin;
         }
         for(int i = 0; i < 21; i++){
-            if (~(*(account_name + i) <= 'Z' && *(account_name + i) >= 'A') &&\ 
-            ~(*(account_name + i) <= 'z' && *(account_name + i) >= 'a') &&\
-            ~(*(account_name + i) <= '9' && *(account_name + i) >= '0')){
+            if (~(*(account_name + i) >= 'Z' && *(account_name + i) <= 'A') &&\ 
+            ~(*(account_name + i) >= 'z' && *(account_name + i) <= 'a') &&\
+            ~(*(account_name + i) >= '9' && *(account_name + i) <= '0')){
                 printf("Invalid password.\n");
-                printf("Please try a new password");
+                printf("Please try a new password\n");
                 goto origin;
             }
+        }
+        char *similarity = (char *)malloc(sizeof(char) * 21);
+        if (similarity = strstr(account_name, corres_password) != NULL && strlen(similarity) >= 5){
+            printf("Your password is too easy\n");
+            goto origin;
         }
         access = 1;
     }
