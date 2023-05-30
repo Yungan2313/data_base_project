@@ -50,6 +50,26 @@ void insert_front_acpd(struct acpd_list **list,char account[],char password[],ch
         return;
     }
 }
+void insert_front_comment(struct comment_list **list,char food_name[],char store_name[],float score,char comment_txt[]){
+    struct comment_list *new_node = malloc(sizeof(struct comment_list));
+    new_node->next = NULL;
+    strcpy(new_node->food_name,food_name);
+    strcpy(new_node->store_name,store_name);
+    strcpy(new_node->comment_txt,comment_txt);
+    new_node->score = score;
+    if(*list == NULL){
+        *list = new_node;
+        return;
+    }
+    else{
+        struct comment_list *now = *list;
+        while(now->next != NULL){
+            now = now->next;
+        }
+        now->next = new_node;
+        return;
+    }
+}
 /*struct linked_list *search(struct linked_list **list,char food_name[],char store_name[],int price,float score){
     struct linked_list *node = *list;
 

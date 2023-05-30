@@ -8,6 +8,8 @@
         "typeinfo": "c",
         "linked_list.h": "c",
         "basic.h": "c",
-        "txtinput.h": "c"
+        "txtinput.h": "c",
+        "compare": "c",
+        "type_traits": "c"
     }
 }
