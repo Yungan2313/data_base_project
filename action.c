@@ -3,35 +3,6 @@
 #include "action.h"
 #define FLOAT_TOLERANCE 0.01
 // #define DEBUG 1
-// static int linked_list_len(struct linked_list *list){
-//     int count = 0;
-//     while(list!=NULL){
-//         list = list->next;
-//         count++;
-//     }
-//     return count;
-// }
-
-// static void swap(struct linked_list *a, struct linked_list *b){
-//     char tempf[20];
-//     int tempp;
-//     float tempfl;
-//     strcpy(tempf,a->food_name);
-//     strcpy(a->food_name,b->food_name);
-//     strcpy(b->food_name,tempf);
-//     strcpy(tempf,a->store_name);
-//     strcpy(a->store_name,b->store_name);
-//     strcpy(b->store_name,tempf);
-//     strcpy(tempf,a->comment_txt);
-//     strcpy(a->comment_txt,b->comment_txt);
-//     strcpy(b->comment_txt,tempf);
-//     tempp = a->price;
-//     a->price = b->price;
-//     b->price = tempp;
-//     tempfl = a->score;
-//     a->score = b->score;
-//     b->score = tempfl;
-// }
 static struct linked_list *node_switch(struct linked_list *node1, struct linked_list *node2){
     node1->next = node2->next;
     node2->next = node1;
@@ -78,11 +49,6 @@ struct linked_list *sort_list(struct linked_list *list,int type,int order){
                                 node = node_switch(node,node->next);
                                 prev->next = node;
                             }
-                            // temp = list;
-                            // while(temp->next!=node && temp->next!=NULL){
-                            //     temp = temp->next;
-                            // }
-                            // temp->next = node;
                             change = 1;
                         }
                     }
