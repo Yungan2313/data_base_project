@@ -5,6 +5,7 @@
 #define MAX_USERNAME_LENGTH 20
 #define MAX_PASSWORD_LENGTH 20
 
+//struct using linked_list.h thus will be removed during v2
 static struct accounts{
     char username[MAX_USERNAME_LENGTH];
     char password[MAX_PASSWORD_LENGTH];
@@ -14,7 +15,7 @@ static struct accounts account[20];
 int numAcc=0;
 
 
-//compares input with txt file accounts, login successful/unsuccessful return 1 or 0
+//compares input with txt file accounts, login successful/unsuccessful
 char *login()
 {
     struct linked_list *list;
