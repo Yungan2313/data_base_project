@@ -95,8 +95,3 @@ static char* password(char* account_name){
         access = 1;
     }
 }
-
-int main(){
-    account();
-    return 0;
-}
