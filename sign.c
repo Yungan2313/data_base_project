@@ -4,8 +4,10 @@
 //帳號：總字數限20、至少2個大寫2個小寫、要有數字、不可空白 //不能跟其他帳號重複
 void account(struct acpd_list **list, char *account_name){
     int access = 0;
+    acpd_read('acpd.txt');
     account_name = (char*)malloc(sizeof(char) * 21);
     struct acpd_list *new_node = malloc(sizeof(struct acpd_list));
+    new_node = list;
     account_name = new_node->account;
     origin:while(access != 1){
         if(account_name == NULL){
@@ -30,6 +32,7 @@ void account(struct acpd_list **list, char *account_name){
             printf("Please retype it again\n");
         }
         else{
+            new_node = new_node->next;
             access = 1;
         }
     }
@@ -69,10 +72,11 @@ int similiar(char *corres_password, char *account_name){
 }
 #endif
 
-//密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或與帳號相似(strstr、嚴格比對)
+//密碼：不能含特殊字元(除了英文跟數字以外的)、字數限20、不可空白、不能跟帳號重複(strcat)或與帳號相似(strstr、非嚴格比對)
 void password(struct acpd_list **list, char *corres_password, char *account_name){
     int access = 0;
     struct acpd_list *new_node = malloc(sizeof(struct acpd_list));
+    new_node = list;
     corres_password = (char *)malloc(sizeof(char) * 21);
     account_name = new_node->account;
     corres_password = new_node->password;
@@ -101,6 +105,7 @@ void password(struct acpd_list **list, char *corres_password, char *account_name
             printf("Your password is too easy\n");
             goto origin;
         }
+        new_node = new_node->next;
         access = 1;
     }
 }
