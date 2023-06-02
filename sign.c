@@ -92,6 +92,5 @@ static char* password(char* account_name){
             goto origin;
         }
         return corres_password;
-        access = 1;
     }
 }
