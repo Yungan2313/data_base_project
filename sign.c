@@ -1,5 +1,6 @@
 #include "basic.h"
 #include "txtinput.h"
+#include "linked_list.h"
 
 char *account();
 static char *password(char *account_name);
@@ -15,12 +16,13 @@ char *account(){
         printf("Do you want to create a new account?\n[1]Yes\t[2]No\n");
         scanf("%d", &choice);
         if(choice == 1){
-            printf("Input your account\n");
+            printf("Input your account: ");
+            scanf(" ");
             fgets(account_name, 21, stdin);
-            for (int i = 0; i < strlen(account_name) + 1; i++){
-                if (~(*(account_name + i) >= 'Z' && *(account_name + i) <= 'A') && 
-                    ~(*(account_name + i) >= 'z' && *(account_name + i) <= 'a') &&
-                    ~(*(account_name + i) >= '9' && *(account_name + i) <= '0')){
+            for (int i = 0; *(account_name + i) !='\n'; i++){
+                if (!((*(account_name + i) <= 'Z' && *(account_name + i) >= 'A') || 
+                    (*(account_name + i) <= 'z' && *(account_name + i) >= 'a') ||
+                    (*(account_name + i) <= '9' && *(account_name + i) >= '0'))){
                     printf("Invalid account.\n");
                     printf("Please try a new name\n");
                     goto origin;
@@ -53,11 +55,11 @@ static char* password(char* account_name){
     int access = 0;
     char *corres_password = (char *)malloc(sizeof(char) * 21);
     origin:while(access != 1){
-        printf("Input your password\n");
+        printf("Input your password:\n");
         fgets(corres_password, 21, stdin);
         if(strcmp(corres_password, account_name) == 0){
-            printf("Your password is the same as your account");
-            printf("Please try a new password");
+            printf("Your password is the same as your account\n");
+            printf("Please try a new password: ");
             goto origin;
         }
         int big_word = 0, small_word = 0, number = 0;
@@ -73,7 +75,7 @@ static char* password(char* account_name){
             }
             else if (*(corres_password + i) == ' '){
                 printf("Space character is forbidden.\n");
-                printf("Please try a new password");
+                printf("Please try a new password\n");
                 goto origin;
             }
         }
@@ -82,15 +84,24 @@ static char* password(char* account_name){
             printf("Please retype it again\n");
             goto origin;
         }
+        #ifdef v
+        //有錯
         if (*(corres_password) = '\n'){
             printf("Where is your password?\n");
             printf("Please retype it again\n");
             goto origin;
         }
+        #endif
+        //有錯
         if (strstr(account_name, corres_password) != NULL && strlen(strstr(account_name, corres_password)) >= 5){
             printf("Your password is too easy\n");
             goto origin;
         }
         return corres_password;
     }
+}
+
+int main(){
+    account();
+    return 0;
 }
