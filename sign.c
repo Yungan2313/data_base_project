@@ -4,7 +4,7 @@
 char *account();
 static char *password(char *account_name);
 
-    // 帳號：總字數限20、不可空白、不能含特殊字元(除了英文跟數字以外的) //不能跟其他帳號重複
+// 帳號：總字數限20、不可空白、不能含特殊字元(除了英文跟數字以外的) //不能跟其他帳號重複
 char *account(){
     int access = 0, choice;
     char* account_name = (char*)malloc(sizeof(char) * 21);
@@ -17,7 +17,7 @@ char *account(){
         if(choice == 1){
             printf("Input your account\n");
             fgets(account_name, 21, stdin);
-            for (int i = 0; i < 21; i++){
+            for (int i = 0; i < strlen(account_name) + 1; i++){
                 if (~(*(account_name + i) >= 'Z' && *(account_name + i) <= 'A') && 
                     ~(*(account_name + i) >= 'z' && *(account_name + i) <= 'a') &&
                     ~(*(account_name + i) >= '9' && *(account_name + i) <= '0')){

@@ -2,12 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 
-
-int main(){
+int main()
+{
     FILE *p;
     p = fopen("test.txt", "r");
-    if (p == NULL) {
-      printf("xxx!\n");
-      return 0;
+    if (p == NULL)
+    {
+        printf("xxx!\n");
+        return 0;
     }
 }
