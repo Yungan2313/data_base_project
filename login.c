@@ -2,44 +2,33 @@
 #include "linked_list.h"
 #include "txtinput.h"
 
-#define MAX_USERNAME_LENGTH 20
-#define MAX_PASSWORD_LENGTH 20
-
-//struct using linked_list.h thus will be removed during v2
-static struct accounts{
-    char username[MAX_USERNAME_LENGTH];
-    char password[MAX_PASSWORD_LENGTH];
-};
-
-static struct accounts account[20];
-int numAcc=0;
-
-
 //compares input with txt file accounts, login successful/unsuccessful
 char *login()
 {
-    struct linked_list *list;
+    struct acpd_list *list;
+    struct linked_list *acpdlist;
     //reads txt file
     list = acpd_read("acpd.txt");
 
-    static char username_input[MAX_USERNAME_LENGTH], password_input[MAX_PASSWORD_LENGTH];
+    static char username_input[20], password_input[20];
     memset(username_input, 0, sizeof(username_input));
     memset(password_input, 0, sizeof(password_input));
 
     start:
     printf("Username: ");
-    scanf("%s", &username_input);
+    scanf("%s", username_input);
 
     printf("Password: ");
-    scanf("%s", &password_input);
+    scanf("%s", password_input);
 
-    //compare using linked list rather than arrays (undone)
-    for(int i=0; i<numAcc; i++)
+    //compare using linked list rather than arrays (done)
+    struct acpd_list *current=list;
+    while(current!=NULL)
     {
-        if(strcmp(username_input, account[i].username)==0 && strcmp(password_input, account[i].password)==0)
+        if(strcmp(username_input, current->account)==0 && strcmp(password_input, current->password)==0)
         {
             printf("You have successfully logged in.");
-            return 1; //returns value of database txt in linked list (undone)
+            return current->data_base_txt; 
         }
         else
         {
@@ -55,7 +44,7 @@ char *login()
                 }
                 else if(yn==1)
                 {
-                    return '\0';
+                    return NULL;
                 }
                 else
                 {
@@ -64,6 +53,13 @@ char *login()
             }
             
         }
-
+        current=current->next;
     }
+    return NULL;
+}
+
+int main()
+{
+    login();
+    return 0;
 }
