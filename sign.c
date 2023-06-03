@@ -16,9 +16,14 @@ char *account(){
         printf("Do you want to create a new account?\n[1]Yes\t[2]No\n");
         scanf("%d", &choice);
         if(choice == 1){
-            printf("Input your account: ");
-            scanf(" ");
+            printf("Input your account:\n");
+            getchar();
             fgets(account_name, 21, stdin);
+            if (*(account_name) == '\n'){
+                printf("Where is your account?\n");
+                printf("Please retype it again\n");
+                goto origin;
+            }
             for (int i = 0; *(account_name + i) !='\n'; i++){
                 if (!((*(account_name + i) <= 'Z' && *(account_name + i) >= 'A') || 
                     (*(account_name + i) <= 'z' && *(account_name + i) >= 'a') ||
@@ -41,7 +46,7 @@ char *account(){
             }
             char *password_total, register_new;
             strcpy(password_total, password(account_name));
-            register_new = acpd_write(account_name, password_total);
+            //register_new = acpd_write(account_name, password_total);
             return "acpd.txt";
         }
         else{
@@ -57,7 +62,12 @@ static char* password(char* account_name){
     origin:while(access != 1){
         printf("Input your password:\n");
         fgets(corres_password, 21, stdin);
-        if(strcmp(corres_password, account_name) == 0){
+        if (*(corres_password) == '\n'){
+            printf("Where is your password?\n");
+            printf("Please retype it again\n");
+            goto origin;
+        }
+        else if(strcmp(corres_password, account_name) == 0){
             printf("Your password is the same as your account\n");
             printf("Please try a new password: ");
             goto origin;
@@ -84,24 +94,25 @@ static char* password(char* account_name){
             printf("Please retype it again\n");
             goto origin;
         }
-        #ifdef v
-        //有錯
-        if (*(corres_password) = '\n'){
-            printf("Where is your password?\n");
-            printf("Please retype it again\n");
-            goto origin;
+        char *match;
+        account_name[strcspn(account_name, "\n")] = '\0';
+        corres_password[strcspn(corres_password, "\n")] = '\0';
+        if(strlen(corres_password) <= strlen(account_name)){
+            match = strstr(account_name, corres_password);
         }
-        #endif
-        //有錯
-        if (strstr(account_name, corres_password) != NULL && strlen(strstr(account_name, corres_password)) >= 5){
+        else{
+            match = strstr(corres_password, account_name);
+        }
+        if (match != NULL && strlen(match) >= 5){
             printf("Your password is too easy\n");
             goto origin;
         }
         return corres_password;
     }
 }
-
+#ifdef DD
 int main(){
     account();
     return 0;
 }
+#endif
