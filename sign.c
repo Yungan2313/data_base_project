@@ -46,7 +46,7 @@ char *account(){
             }
             char *password_total, register_new;
             strcpy(password_total, password(account_name));
-            //register_new = acpd_write(account_name, password_total);
+            register_new = acpd_write(account_name, password_total);
             return "acpd.txt";
         }
         else{
