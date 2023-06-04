@@ -2,11 +2,14 @@
 #include "linked_list.h"
 #include "txtinput.h"
 #include "action.h"
+#include "comment.h"
 // #define DEBUG_function 1
 // #define DEBUG 1
 // #define DEBUG2 1
 // #define DEBUG3 1
-#define DEBUG4 1
+// #define DEBUG4 1
+// #define DEBUG5 1
+#define DEBUG6 1
 int main(){
     struct linked_list *list = NULL;
     struct acpd_list *acpd_list = NULL;
@@ -51,15 +54,23 @@ int main(){
         printf("not ok3\n");
     }
     for(int i=0; comment_list != NULL; i++){
-        printf("%d:%s %s %0.1f %s\n",i,comment_list->food_name,comment_list->store_name,comment_list->score,comment_list->comment_txt);
+        printf("%d:%s %0.1f %s\n",i,comment_list->account,comment_list->score,comment_list->comment_txt);
         comment_list = comment_list->next;
     }
     #endif
    
-    #ifdef DEBUG4
+    #ifdef DEBUG4//acpd 新增
     char *acpd_write_txt = malloc(sizeof(char));
     strcpy(acpd_write_txt,acpd_write("golin","abcde"));
     printf("%s",acpd_write_txt);
     printf("ok2\n");
+    #endif
+
+    #ifdef DEBUG5//新增東西到評論
+    insert_data("commentsssss","test","golin",9.6,2);
+    #endif
+
+    #ifdef DEBUG6//刪除評論內的評價跟comment
+    delete_data("commentsssss","test","golin");
     #endif
 }

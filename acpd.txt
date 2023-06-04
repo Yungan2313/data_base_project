@@ -1,4 +1,3 @@
 lanpa bbccsb8787 lanpa.txt
 lanchao safsfkjasg lanchao.txt
 golin abcde golin.txt
-golin abcde golin.txt
