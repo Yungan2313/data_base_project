@@ -7,7 +7,7 @@ static int folder_line_count_txt(char txt[],char folder[]){
     int line_count = 0;
     char *buffer;
     buffer = malloc(sizeof(char)*100);
-    DIR *dir = opendir("data_base");
+    DIR *dir = opendir(folder);
     struct dirent *entry;
     #ifdef DEBUG_DIR
     if (dir == NULL) {
@@ -23,7 +23,6 @@ static int folder_line_count_txt(char txt[],char folder[]){
             sprintf(path, "%s/%s",folder, entry->d_name);  // 構造檔案路徑
             FILE *fp = fopen(path, "r");  // 打開檔案
             if (fp != NULL) {
-
                 while (fgets(buffer, 100, fp) != NULL) {
                     line_count++;
                 }
@@ -190,7 +189,7 @@ struct comment_list *comment_list_read(char txt[]){
                     // printf("ok?\n");
                     int temp = strlen(tempc);
                     int count = 0;
-                    char food_name[20],store_name[20],comment_txt[20]; 
+                    char account[20],comment_txt[20]; 
                     float score;
                     // printf("ok22?\n");
                     if(tempc[temp-1] != '\n'){
@@ -206,11 +205,11 @@ struct comment_list *comment_list_read(char txt[]){
                     // printf("ok222?\n");
                     // fflush(stdout);
                     c[i] = strdup(tempc);
-                    sscanf(c[i],"%s %s %f %s",food_name,store_name,&score,comment_txt);
+                    sscanf(c[i],"%s %s %f %s",account,&score,comment_txt);
                     // printf("%s %s %f %s\n",food_name,store_name,score,comment_txt);
                     // printf( "ok?\n");
                     // fflush(stdout);
-                    insert_front_comment(&new_node,food_name,store_name,score,comment_txt);
+                    insert_front_comment(&new_node,account,score,comment_txt);
                     // printf("%s %s %0.1f %s\n",new_node->food_name,new_node->store_name,new_node->score,new_node->comment_txt);
                     // free(c[i]);
                     i++;
@@ -232,12 +231,14 @@ char *acpd_write(char account[],char password[]){
     char *account_p = malloc(sizeof(char)*20),*path = malloc(sizeof(char)*100);
     strcpy(account_p, account);
     FILE *file = fopen("acpd.txt", "a"),*new_file;
+    #ifdef DEBUG
     if (file == NULL) {
         printf("無法打開檔案\n");
     }
     else{
         printf("read ok\n");
     }
+    #endif
     fprintf(file, "%s %s %s.txt\n",account,password,account);
     strcat(account_p, ".txt");
 
