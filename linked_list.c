@@ -50,11 +50,10 @@ void insert_front_acpd(struct acpd_list **list,char account[],char password[],ch
         return;
     }
 }
-void insert_front_comment(struct comment_list **list,char food_name[],char store_name[],float score,char comment_txt[]){
+void insert_front_comment(struct comment_list **list,char account[],float score,char comment_txt[]){
     struct comment_list *new_node = malloc(sizeof(struct comment_list));
     new_node->next = NULL;
-    strcpy(new_node->food_name,food_name);
-    strcpy(new_node->store_name,store_name);
+    strcpy(new_node->account,account);
     strcpy(new_node->comment_txt,comment_txt);
     new_node->score = score;
     if(*list == NULL){
