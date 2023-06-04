@@ -2,19 +2,23 @@
 #include "linked_list.h"
 #include "txtinput.h"
 #include "action.h"
-#define DEBUG 1
+// #define DEBUG_function 1
+// #define DEBUG 1
 // #define DEBUG2 1
-#define DEBUG3 1
+// #define DEBUG3 1
+#define DEBUG4 1
 int main(){
     struct linked_list *list = NULL;
     struct acpd_list *acpd_list = NULL;
     struct comment_list *comment_list = NULL;
     char txt[] = "test.txt",acpd_txt[] = "acpd.txt",comment_txt[] = "comment_test.txt";
+    #ifdef DEBUG_function
     list = data_base_read(txt);
     acpd_list = acpd_read(acpd_txt);
     comment_list = comment_list_read(comment_txt);
+    #endif
     // printf("ok1\n");
-    #ifdef DEBUG
+    #ifdef DEBUG //讀取data_base acpd
     if(list == NULL){
         printf("not 1ok");
     }
@@ -31,7 +35,7 @@ int main(){
     // printf("ok\n");
     #endif
 
-    #ifdef DEBUG2
+    #ifdef DEBUG2 // sort 處理
     int type,order;
     scanf("%d %d",&type,&order);
     list = sort_list(list,type,order);
@@ -42,7 +46,7 @@ int main(){
     #endif
     // printf("ok2\n");
     
-    #ifdef DEBUG3
+    #ifdef DEBUG3 //comment 讀取
     if(comment_list == NULL){
         printf("not ok3\n");
     }
@@ -50,5 +54,12 @@ int main(){
         printf("%d:%s %s %0.1f %s\n",i,comment_list->food_name,comment_list->store_name,comment_list->score,comment_list->comment_txt);
         comment_list = comment_list->next;
     }
+    #endif
+   
+    #ifdef DEBUG4
+    char *acpd_write_txt = malloc(sizeof(char));
+    strcpy(acpd_write_txt,acpd_write("golin","abcde"));
+    printf("%s",acpd_write_txt);
+    printf("ok2\n");
     #endif
 }

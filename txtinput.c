@@ -227,3 +227,26 @@ struct comment_list *comment_list_read(char txt[]){
     // printf("%s %s %0.1f %s\n",new_node->food_name,new_node->store_name,new_node->score,new_node->comment_txt);
     return new_node;
 }
+
+char *acpd_write(char account[],char password[]){
+    char *account_p = malloc(sizeof(char)*20),*path = malloc(sizeof(char)*100);
+    strcpy(account_p, account);
+    FILE *file = fopen("acpd.txt", "a"),*new_file;
+    if (file == NULL) {
+        printf("無法打開檔案\n");
+    }
+    else{
+        printf("read ok\n");
+    }
+    fprintf(file, "%s %s %s.txt\n",account,password,account);
+    strcat(account_p, ".txt");
+
+    DIR *dir = opendir("data_base");
+    strcat(strcpy(path,"data_base/"),account_p);
+    sprintf(account_p, path);
+    new_file = fopen(account_p, "w");
+    closedir(dir);
+    fclose(file);
+    fclose(new_file);
+    return account_p;
+}

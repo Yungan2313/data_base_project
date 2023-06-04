@@ -5,4 +5,5 @@
 struct linked_list *data_base_read(char txt[]);
 struct acpd_list *acpd_read(char txt[]);
 struct comment_list *comment_list_read(char txt[]);
+char *acpd_write(char account[],char password[]);
 #endif
