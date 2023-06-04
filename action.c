@@ -9,7 +9,7 @@ static struct linked_list *node_switch(struct linked_list *node1, struct linked_
     return node2;
 }
 
-//新增
+//新增(要注意重複食物_店家)
 struct linked_list *add_list(struct linked_list *list,char food_name[],char store_name[],int price,float score,char comment_txt[]){
     
 }
@@ -17,7 +17,7 @@ struct linked_list *add_list(struct linked_list *list,char food_name[],char stor
 struct linked_list *delete_list(struct linked_list *list,int position){
 
 }
-//排列(回傳的只有兩個)
+//排列(回傳的只有兩個，price、score)
 struct linked_list *sort_list(struct linked_list *list,int type,int order){
     struct linked_list *node = list,*test_line = list,*test = list,*prev = list;
     int list_count = 0;
