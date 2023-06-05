@@ -56,3 +56,10 @@ char *login()
 
     return NULL;
 }
+
+#ifdef debug
+int main(){
+    login();
+    return 0;
+}
+#endif
