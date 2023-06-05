@@ -57,9 +57,3 @@ char *login()
     }
     return NULL;
 }
-
-int main()
-{
-    login();
-    return 0;
-}
