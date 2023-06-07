@@ -30,36 +30,36 @@ char *login()
             printf("You have successfully logged in.");
             return current->data_base_txt; 
         }
-        else
-        {
-            int yn=0;
-            printf("Account was not found. Are you sure that you have an account?\n");
-            while(1)
-            {
-                printf("[0]Yes\n[1]No\n");
-                scanf("%d", &yn);
-                if(yn==0)
-                {
-                    goto start;
-                }
-                else if(yn==1)
-                {
-                    return NULL;
-                }
-                else
-                {
-                    continue;
-                }
-            }
-            
-        }
         current=current->next;
     }
+
+    int yn=0;
+    printf("Account was not found. Are you sure that you have an account?\n");
+
+    while(1)
+    {
+        printf("[0]Yes\n[1]No\n");
+        scanf("%d", &yn);
+        if(yn==0)
+        {
+            goto start;
+        }
+        else if(yn==1)
+        {
+            return NULL;
+        }
+        else
+        {
+            continue;
+        }
+    }
+
     return NULL;
 }
 
-int main()
-{
+#ifdef debug
+int main(){
     login();
     return 0;
 }
+#endif

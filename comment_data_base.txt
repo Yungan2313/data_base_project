@@ -1,3 +1,0 @@
-abcde fghij acbde_fghij.txt
-asdf asdfg asdf_asdfg.txt
-comment test comment_test.txt
