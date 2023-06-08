@@ -244,8 +244,7 @@ char *acpd_write(char account[],char password[]){
 
     DIR *dir = opendir("data_base");
     strcat(strcpy(path,"data_base/"),account_p);
-    sprintf(account_p, path);
-    new_file = fopen(account_p, "w");
+    new_file = fopen(path, "w");
     closedir(dir);
     fclose(file);
     fclose(new_file);
