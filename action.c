@@ -67,7 +67,10 @@ struct linked_list *add_list(struct linked_list *list,char user[]){
     getchar();
     temp == 1 ? (temp = 2): (temp = 1);//yes = 2,no = 1
     temp == 2 ? insert_front(&list,food_name,store_name,price,score,comment_txt): insert_front(&list,food_name,store_name,price,score,"0"); 
+    // printf("problem one\n");
+    // printf("%s----------------------------------------------\n",user);
     insert_data(food_name,store_name,user,score,temp);
+    // printf("problem two\n");
     //printf("%s %s %s\n",food_name,store_name,comment_txt);
     free(food_name);
     free(store_name);
@@ -273,6 +276,21 @@ struct linked_list *search_list(struct linked_list *list){
             return new_list;
     }
 }
+//給list找ID輸出comment_txt;
+char *comment_choose(struct linked_list *list,char user[],int page){
+    int ID;
+    printf("waht comment you want to see?\n");
+    printf("enter:(ID) ");
+    scanf("%d",&ID);
+    getchar();
+    ID += page*10;
+    for(int i = 0;i<ID;i++){
+        list = list->next;
+    }
+    return list->comment_txt;
+}
+
+
 //要把資料存入txt 還要清空list
 void log_out(struct linked_list *list,char user[]){
     char path[200],*user_txt = malloc(sizeof(char)*100);
