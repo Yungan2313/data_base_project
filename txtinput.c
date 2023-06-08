@@ -205,7 +205,7 @@ struct comment_list *comment_list_read(char txt[]){
                     // printf("ok222?\n");
                     // fflush(stdout);
                     c[i] = strdup(tempc);
-                    sscanf(c[i],"%s %s %f %s",account,&score,comment_txt);
+                    sscanf(c[i],"%s %f %s",account,&score,comment_txt);
                     // printf("%s %s %f %s\n",food_name,store_name,score,comment_txt);
                     // printf( "ok?\n");
                     // fflush(stdout);

@@ -28,13 +28,15 @@ char *login()
         if(strcmp(username_input, current->account)==0 && strcmp(password_input, current->password)==0)
         {
             printf("You have successfully logged in.");
-            return current->data_base_txt; 
+            char *result= current->data_base_txt; 
+            free_acpd_list(list);
+            return result;
         }
         current=current->next;
     }
 
     int yn=0;
-    printf("Account was not found. Are you sure that you have an account?\n");
+    printf("Account or Password are incorrect. Please retype it again.\n");
 
     while(1)
     {
@@ -53,7 +55,7 @@ char *login()
             continue;
         }
     }
-
+    free_acpd_list(list);
     return NULL;
 }
 

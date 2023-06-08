@@ -50,7 +50,7 @@ static int line_count_txt(char txt[]){
     return line_count;
 }
 void insert_data(char food_name[],char store_name[],char user[],float score,int comment_bool){
-    char *comment_txt = malloc(sizeof(char)*20),*comment_collect_txt = malloc(sizeof(char)*20);
+    char *comment_txt = malloc(sizeof(char)*21),*comment_collect_txt = malloc(sizeof(char)*100);
     strcat(strcat(strcat(strcpy(comment_txt,food_name),"_"),store_name),".txt");//food_store.txt
     //搜尋有沒有該食物_店家的txt檔
     DIR *dir = opendir("comment_data_base");
@@ -63,7 +63,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
             sprintf(path, "comment_data_base/%s", entry->d_name); 
             FILE *p = fopen(path, "a");
             if(comment_bool == 2){//要寫comment
-                strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt, food_name),"_"),store_name),"_"),user),".txt");//food_store_user.txt
+                strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
                 fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
                 insert_comment(comment_collect_txt);
             }
@@ -79,7 +79,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
         strcat(strcpy(file_name,"comment_data_base/"),comment_txt);
         FILE *new_file = fopen(file_name,"w");
         if(comment_bool == 2){//要寫comment
-            strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt, food_name),"_"),store_name),"_"),user),".txt");//food_store_user.txt
+            strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
             fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
             insert_comment(comment_collect_txt);
         }
@@ -106,7 +106,7 @@ static void insert_comment(char *comment_collect_txt){
 void delete_data(char food_name[],char store_name[],char user[]){
     char *comment_txt = malloc(sizeof(char)*100),*comment_collect_txt = malloc(sizeof(char)*100);
     strcat(strcat(strcat(strcpy(comment_txt,food_name),"_"),store_name),".txt");//food_store.txt
-    strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt, food_name),"_"),store_name),"_"),user),".txt");//food_store_user.txt
+    strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
     int line_count;
     line_count = folder_line_count_txt(comment_txt,"comment_data_base");
     struct linked_list *new_node = NULL;
@@ -184,10 +184,16 @@ static void delete_comment(char comment_collect_txt[]){
     closedir(dir);
 }
 //搜尋這個食物的評價，並回傳struct comment
-struct comment_list *comment_data_search(){
-
-}
+// struct comment_list *comment_data_search(char txt[]){
+    
+// }
 //將comment回傳
-char *comment_search(){
-
+char *comment_search(char txt[]){
+    char *comment = malloc(sizeof(char)*1000);
+    char path[100];
+    DIR *dir = opendir("comment_collect");
+    sprintf(path,"comment_collect/%s",txt);
+    FILE *comment_file = fopen(path,"r");
+    fgets(comment, sizeof(char)*1000, comment_file);
+    return comment;
 }

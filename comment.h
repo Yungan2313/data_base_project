@@ -7,4 +7,5 @@
 #endif
 void insert_data(char food_name[],char store_name[],char user[],float score,int comment_bool);
 void delete_data(char food_name[],char store_name[],char user[]);
+char *comment_search(char txt[]);
 #endif
