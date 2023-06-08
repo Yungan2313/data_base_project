@@ -6,4 +6,5 @@
 #include "basic.h"
 #endif
 int database_UI(struct linked_list *list,int page);
+int comment_UI(struct comment_list *list, int page);
 #endif

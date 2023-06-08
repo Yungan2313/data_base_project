@@ -21,7 +21,7 @@ int database_UI(struct linked_list *list,int page){
     
     for(int i = 0;i < 10;node = node->next){
         if(node != NULL){
-            printf("|%4d  |%*s      |%*s     |%*d  |%*.1f  |\n",i+1, 10, node->food_name, 10, node->store_name, 7, node->price, 7, node->score);
+            printf("|%4d  |%*s      |%*s     |%*d  |%*.1f  |\n",i, 10, node->food_name, 10, node->store_name, 7, node->price, 7, node->score);
         }else{
             break;
         }
@@ -32,7 +32,7 @@ int database_UI(struct linked_list *list,int page){
             printf("-");
     }
     printf("\n");
-    printf("Page %d",page + 1);
+    printf("Page %d\n",page + 1);
 
     return page;
 }
@@ -48,11 +48,14 @@ int comment_UI(struct comment_list *list, int page){
     }
     average /= count;
     node = list;
-    for(int i = 0;i< page; node = node->next){
+    for(int i = 0;i<page; node = node->next){
         if(node == NULL){
            return -1;
         }
         i++;
+    }
+    if(node == NULL){
+        return -1;
     }
     for(int l = 0;l <= 63; l++){
             printf("-");
@@ -66,7 +69,7 @@ int comment_UI(struct comment_list *list, int page){
     }
     printf("\n");
     
-    printf("|%4d  |%*s       |%*.1f  |\n",page+1, 13, node->account, 7, node->score);
+    printf("|%4d  |%*s       |%*.1f  |\n",page, 13, node->account, 7, node->score);
     for(int l = 0;l <= 63; l++){
             printf("-");
     }
@@ -76,7 +79,7 @@ int comment_UI(struct comment_list *list, int page){
             printf("-");
     }
     printf("\n");
-    printf("Average Score: %0.1f",average);
+    printf("Average Score: %0.1f\n",average);
 
     return page;
 }
