@@ -8,9 +8,9 @@
 // #define DEBUG2 1
 // #define DEBUG3 1
 // #define DEBUG4 1
-// #define DEBUG5 1
+#define DEBUG5 1
 // #define DEBUG6 1
-#define DEBUG7 1
+// #define DEBUG7 1
 // #define DEBUG8 1
 // #define DEBUG9 1
 // #define DEBUG10 1

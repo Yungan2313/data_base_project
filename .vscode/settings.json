@@ -10,6 +10,7 @@
         "basic.h": "c",
         "txtinput.h": "c",
         "compare": "c",
-        "type_traits": "c"
+        "type_traits": "c",
+        "comment.h": "c"
     }
 }

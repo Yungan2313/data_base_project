@@ -1,8 +1,8 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 struct linked_list{
-    char food_name[20];
-    char store_name[20];
+    char food_name[50];
+    char store_name[50];
     int  price;
     float score;
     char comment_txt[100];
