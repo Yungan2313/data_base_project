@@ -50,7 +50,7 @@ static int line_count_txt(char txt[]){
     return line_count;
 }
 void insert_data(char food_name[],char store_name[],char user[],float score,int comment_bool){
-    char *comment_txt = malloc(sizeof(char)*21),*comment_collect_txt = malloc(sizeof(char)*100);
+    char *comment_txt = malloc(sizeof(char)*100),*comment_collect_txt = malloc(sizeof(char)*100);
     strcat(strcat(strcat(strcpy(comment_txt,food_name),"_"),store_name),".txt");//food_store.txt
     //搜尋有沒有該食物_店家的txt檔
     DIR *dir = opendir("comment_data_base");
@@ -80,6 +80,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
         FILE *new_file = fopen(file_name,"w");
         if(comment_bool == 2){//要寫comment
             strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
+            // printf("%s %0.1f %s\n",user,score,comment_collect_txt);
             fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
             insert_comment(comment_collect_txt);
         }
@@ -92,13 +93,16 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
 }
 //新增一個新的txt檔儲存comment，程式會包含input
 static void insert_comment(char *comment_collect_txt){
-    char path[100],comment_write[200];
+    // printf("%s\n",comment_collect_txt);//-----------------------------------------------------------
+    char path[100],*comment_write = malloc(sizeof(char)*200);
     DIR *dir = opendir("comment_collect");
     sprintf(path,"comment_collect/%s",comment_collect_txt);
     FILE *new_file = fopen(path,"w");
     printf("please write down your comment:\n");
     fgets(comment_write,200,stdin);
+    printf("");//不知道為甚麼，把這個打上就可以跑了==
     fprintf(new_file,comment_write);
+    printf("");//不知道為甚麼，把這個打上就可以跑了==
     fclose(new_file);
     closedir(dir);
 }
