@@ -28,7 +28,7 @@ char *login()
     {
         if(strcmp(username_input, current->account)==0 && strcmp(password_input, current->password)==0)
         {
-            printf("You have successfully logged in.");
+            printf("You have successfully logged in.\n");
             char *result= current->data_base_txt; 
             free_acpd_list(list);
             // printf("%s", result);
@@ -42,7 +42,7 @@ char *login()
 
     while(1)
     {
-        printf("[0]Yes\n[1]No\n");
+        printf("[0]Yes\n[1]register a new one\n[2]exit");
         scanf("%d", &yn);
         if(yn==0)
         {
@@ -51,6 +51,9 @@ char *login()
         else if(yn==1)
         {
             return NULL;
+        }
+        else if(yn == 2){
+            return "exit";
         }
         else
         {
