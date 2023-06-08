@@ -36,7 +36,7 @@ char *login()
     }
 
     int yn=0;
-    printf("Account was not found. Are you sure that you have an account?\n");
+    printf("Account or Password are incorrect. Please retype it again.\n");
 
     while(1)
     {
