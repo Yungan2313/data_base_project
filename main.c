@@ -179,7 +179,7 @@ int main(){
                     // printf("here!\n");
                     // free(comment_txt);
                     // printf("here!\n");
-                    comment_list = NULL;
+                    // comment_list = NULL;
                     // printf("here!\n");
                     continue;
                 case 8:
