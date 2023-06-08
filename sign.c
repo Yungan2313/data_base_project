@@ -1,22 +1,23 @@
 #include "basic.h"
 #include "txtinput.h"
 #include "linked_list.h"
-
+#include "sign.h"
 char *account();
 static char *password(char *account_name);
 
 // 帳號：總字數限20、不可空白、不能含特殊字元(除了英文跟數字以外的) //不能跟其他帳號重複
 char *account(){
     int access = 0, choice;
-    char* account_name = (char*)malloc(sizeof(char) * 21);
+    char* account_name = (char*)malloc(sizeof(char) * 100);
     struct acpd_list *new_node = acpd_read("acpd.txt");
     struct acpd_list *ptr;
+    char *password_total,*register_new = malloc(sizeof(char)*100);
     while(access != 1){
         origin:
         printf("Do you want to create a new account?\n[1]Yes\t[2]No\n");
         scanf("%d", &choice);
         if(choice == 1){
-            printf("Input your account:\n");
+            printf("Input your account:(the account name should only use characters and numbers)\n");
             getchar();
             fgets(account_name, 21, stdin);
             if (*(account_name) == '\n'){
@@ -44,10 +45,9 @@ char *account(){
                     goto origin;
                 }
             }
-            char *password_total, register_new;
             strcpy(password_total, password(account_name));
             register_new = acpd_write(account_name, password_total);
-            return "acpd.txt";
+            return register_new;
         }
         else{
             return NULL;
@@ -58,9 +58,9 @@ char *account(){
 // 密碼：至少2個大寫2個小寫、要有數字、字數限20、不可空白、不能跟帳號重複(strcat)或與帳號相似(strstr、非嚴格比對)
 static char* password(char* account_name){
     int access = 0;
-    char *corres_password = (char *)malloc(sizeof(char) * 21);
+    char *corres_password = (char *)malloc(sizeof(char) * 100);
     origin:while(access != 1){
-        printf("Input your password:\n");
+        printf("Input your password:(the password need at least two big characters and small characters, and also at least one number)\n");
         fgets(corres_password, 21, stdin);
         if (*(corres_password) == '\n'){
             printf("Where is your password?\n");
@@ -104,7 +104,7 @@ static char* password(char* account_name){
             match = strstr(corres_password, account_name);
         }
         if (match != NULL && strlen(match) >= 5){
-            printf("Your password is too easy\n");
+            printf("Your password is too similar to your account\n");
             goto origin;
         }
         return corres_password;
