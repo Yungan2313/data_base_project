@@ -28,7 +28,9 @@ char *login()
         if(strcmp(username_input, current->account)==0 && strcmp(password_input, current->password)==0)
         {
             printf("You have successfully logged in.");
-            return current->data_base_txt; 
+            char *result= current->data_base_txt; 
+            free_acpd_list(list);
+            return result;
         }
         current=current->next;
     }
@@ -53,7 +55,7 @@ char *login()
             continue;
         }
     }
-
+    free_acpd_list(list);
     return NULL;
 }
 
