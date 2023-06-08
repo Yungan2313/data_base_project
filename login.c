@@ -1,7 +1,8 @@
 #include "basic.h"
 #include "linked_list.h"
 #include "txtinput.h"
-
+#include "login.h"
+// #define debug 1
 //compares input with txt file accounts, login successful/unsuccessful
 char *login()
 {
@@ -30,6 +31,7 @@ char *login()
             printf("You have successfully logged in.");
             char *result= current->data_base_txt; 
             free_acpd_list(list);
+            // printf("%s", result);
             return result;
         }
         current=current->next;

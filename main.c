@@ -1,4 +1,11 @@
 #include "basic.h"
+#include "linked_list.h"
+#include "txtinput.h"
+#include "login.h"
+#include "sign.h"
+#include "UI.h"
+#include "action.h"
+#include "comment.h"
 
 int main(){
     int type,order;

@@ -4,17 +4,17 @@
 #include "action.h"
 #include "comment.h"
 #define DEBUG_function 1
-#define DEBUG 1
+// #define DEBUG 1
 // #define DEBUG2 1
 // #define DEBUG3 1
 // #define DEBUG4 1
 // #define DEBUG5 1
 // #define DEBUG6 1
-// #define DEBUG7 1
-#define DEBUG8 1
+#define DEBUG7 1
+// #define DEBUG8 1
 // #define DEBUG9 1
 // #define DEBUG10 1
-#define DEBUG11 1
+// #define DEBUG11 1
 int main(){
     struct linked_list *list = NULL,*temp,*seach_list = NULL;
     struct acpd_list *acpd_list = NULL;
