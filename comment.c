@@ -100,7 +100,7 @@ static void insert_comment(char *comment_collect_txt){
     FILE *new_file = fopen(path,"w");
     printf("please write down your comment:\n");
     fgets(comment_write,200,stdin);
-    printf("");//不知道為甚麼，把這個打上就可以跑了==
+    printf("wait for a second, data is sending\n");//不知道為甚麼，把這個打上就可以跑了==
     fprintf(new_file,comment_write);
     printf("");//不知道為甚麼，把這個打上就可以跑了==
     fclose(new_file);

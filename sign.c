@@ -57,11 +57,14 @@ char *account(){
 
 // 密碼：至少2個大寫2個小寫、要有數字、字數限20、不可空白、不能跟帳號重複(strcat)或與帳號相似(strstr、非嚴格比對)
 static char* password(char* account_name){
-    int access = 0;
+    int access = 0,len;
     char *corres_password = (char *)malloc(sizeof(char) * 100);
     origin:while(access != 1){
         printf("Input your password:(the password need at least two big characters and small characters, and also at least one number)\n");
         fgets(corres_password, 21, stdin);
+        int len = strlen(corres_password);
+        *(corres_password+len-1) = '\0';
+        // printf("%s\n",corres_password);
         if (*(corres_password) == '\n'){
             printf("Where is your password?\n");
             printf("Please retype it again\n");
@@ -73,7 +76,8 @@ static char* password(char* account_name){
             goto origin;
         }
         int big_word = 0, small_word = 0, number = 0;
-        for(int i = 0; i < 21; i++){
+        for(int i = 0; i < len; i++){
+            // printf("c:%c\n",*(corres_password + i));
             if (*(corres_password + i) <= 'Z' && *(corres_password + i) >= 'A'){
                 big_word++;
             }
@@ -107,6 +111,7 @@ static char* password(char* account_name){
             printf("Your password is too similar to your account\n");
             goto origin;
         }
+        // printf("%s\n", corres_password);
         return corres_password;
     }
 }
