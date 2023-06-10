@@ -101,7 +101,7 @@ int main(){
                     getchar();
                     printf("For what order?\n");
                     printf("    [1]great to small\n");
-                    printf("    [2]small to great");
+                    printf("    [2]small to great\n");
                     printf("enter: ");
                     scanf("%d",&order);
                     getchar();
