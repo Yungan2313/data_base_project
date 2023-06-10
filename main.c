@@ -8,7 +8,7 @@
 #include "comment.h"
 char *user_account(char *data_base_txt){
     int i = 0;
-    char *user = malloc(sizeof(char)*50);
+    char *user = malloc(sizeof(char)*100);
     while(*(data_base_txt+i)!= '.'){
         *(user+i) = *(data_base_txt+i);
         i++;
@@ -20,7 +20,7 @@ int main(){
     struct linked_list *list = NULL;
     struct linked_list *search_linked_list = NULL;
     struct comment_list *comment_list = NULL;
-    char *user = malloc(sizeof(char)*100), *database_txt,*comment_txt = malloc(sizeof(char)*100);
+    char *user, *database_txt,*comment_txt = malloc(sizeof(char)*100);
     int temp,page = 0,type,order,choose;
     int search_page = 0,comment_page = 0;
     while(1){

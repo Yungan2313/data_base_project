@@ -94,7 +94,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
 //新增一個新的txt檔儲存comment，程式會包含input
 static void insert_comment(char *comment_collect_txt){
     // printf("%s\n",comment_collect_txt);//-----------------------------------------------------------
-    char path[100],*comment_write = malloc(sizeof(char)*200);
+    char path[100],*comment_write = (char *)malloc(sizeof(char)*200);
     DIR *dir = opendir("comment_collect");
     sprintf(path,"comment_collect/%s",comment_collect_txt);
     FILE *new_file = fopen(path,"w");
@@ -104,6 +104,7 @@ static void insert_comment(char *comment_collect_txt){
     fprintf(new_file,comment_write);
     printf("");//不知道為甚麼，把這個打上就可以跑了==
     fclose(new_file);
+    free(comment_write);
     closedir(dir);
 }
 //將資料刪除(刪除要包含將comment刪除)(要檢查她有沒有comment('0'))

@@ -45,8 +45,11 @@ char *account(){
                     goto origin;
                 }
             }
-            strcpy(password_total, password(account_name));
+            
+            password_total = password(account_name);
             register_new = acpd_write(account_name, password_total);
+            free(password_total);
+            free(account_name);
             return register_new;
         }
         else{
