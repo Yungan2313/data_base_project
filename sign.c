@@ -78,7 +78,7 @@ static char* password(char* account_name){
             *(upload_password+len-1) = '\0';
             // printf("%s\n",upload_password);
             FILE *file = fopen(upload_password,"r");
-            fgets(corres_password,100,file);
+            fgets(corres_password,20,file);
             len = strlen(corres_password);
             *(corres_password+len-1) = '\0';
             // printf("%s\n",corres_password);

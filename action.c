@@ -284,7 +284,7 @@ struct linked_list *search_list(struct linked_list *list){
 //給list找ID輸出comment_txt;
 char *comment_choose(struct linked_list *list,char user[],int page){
     int ID;
-    printf("waht comment you want to see?\n");
+    printf("what comment you want to see?\n");
     printf("enter:(ID) ");
     scanf("%d",&ID);
     getchar();
