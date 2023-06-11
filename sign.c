@@ -65,7 +65,7 @@ static char* password(char* account_name){
     int big_word = 0, small_word = 0, number = 0;
     origin:while(access != 1){
         printf("Input your password:(the password need at least two big characters and small characters, and also at least one number)\n");
-        printf("If you afraid to type the password on terminal, you can enter your password in a text file and upload it\n");
+        printf("If you are afraid to type the password on terminal, you can enter your password in a text file and upload it\n");
         printf("    [1]type\n");
         printf("    [2]upload text file\n");
         scanf("%d",&temp);
