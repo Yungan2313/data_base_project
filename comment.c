@@ -2,7 +2,7 @@
 #include "linked_list.h"
 #include "txtinput.h"
 #include "comment.h"
-static void insert_comment(char *comment_collect_txt);
+static int insert_comment(char *comment_collect_txt);
 static void delete_comment(char comment_collect_txt[]);
 //將新的資料傳進食物data儲存(包含使用者、評價、comment.txt)(comment_bool = 1(沒評論) 2(有評論))
 static int folder_line_count_txt(char txt[],char folder[]){
@@ -64,8 +64,12 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
             FILE *p = fopen(path, "a");
             if(comment_bool == 2){//要寫comment
                 strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
-                fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
-                insert_comment(comment_collect_txt);
+                if(insert_comment(comment_collect_txt) == -1){
+                    fprintf(p, "%s %0.1f %c\n",user,score,'0');
+                }
+                else{
+                    fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
+                }
             }
             else{
                 fprintf(p, "%s %0.1f %c\n",user,score,'0');
@@ -81,8 +85,14 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
         if(comment_bool == 2){//要寫comment
             strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
             // printf("%s %0.1f %s\n",user,score,comment_collect_txt);
-            fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
-            insert_comment(comment_collect_txt);
+            // printf("%s\n",comment_collect_txt);//---------------------------------------------------------------------------------------------
+            if(insert_comment(comment_collect_txt) == -1){
+                fprintf(new_file, "%s %0.1f %c\n",user,score,'0');
+            }
+            else{
+                fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
+            }
+            
         }
         else{
             fprintf(new_file, "%s %0.1f %c\n",user,score,'0');
@@ -92,14 +102,23 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
     closedir(dir);
 }
 //新增一個新的txt檔儲存comment，程式會包含input
-static void insert_comment(char *comment_collect_txt){
+static int insert_comment(char *comment_collect_txt){
     // printf("%s\n",comment_collect_txt);//-----------------------------------------------------------
-    char path[100],*comment_write = (char *)malloc(sizeof(char)*200);
+    char path[100],*comment_write = (char *)malloc(sizeof(char)*201);
+    int len;
     DIR *dir = opendir("comment_collect");
     sprintf(path,"comment_collect/%s",comment_collect_txt);
     FILE *new_file = fopen(path,"w");
+    if(new_file==NULL){
+        printf("Error: there is problem creating comment txt file\n");
+        printf("Sorry!Please type it later\n");
+        return -1;
+    }
     printf("please write down your comment:\n");
     fgets(comment_write,200,stdin);
+    len = strlen(comment_write);
+    *(comment_write+len-1) = '\0';
+    // printf("%s\n",comment_write);
     printf("wait for a second, data is sending\n");//不知道為甚麼，把這個打上就可以跑了==
     fprintf(new_file,comment_write);
     printf("");//不知道為甚麼，把這個打上就可以跑了==

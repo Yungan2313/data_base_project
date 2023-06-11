@@ -71,14 +71,16 @@ void insert_front_comment(struct comment_list **list,char account[],float score,
 }
 
 struct linked_list *delete_linked_list(struct linked_list *list,int position){
-    struct linked_list *new_node;
+    struct linked_list *new_node = list,*temp;
     if(position == 0){
         return list->next;
     }
-    for(int i = 0;i<position;i++){
+    for(int i = 0;i<position-1;i++){
         new_node = new_node->next;
     }
+    temp = new_node->next;
     new_node->next = new_node->next->next;
+    free(temp);
     return list;
 }
 
