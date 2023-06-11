@@ -60,12 +60,33 @@ char *account(){
 
 // 密碼：至少2個大寫2個小寫、要有數字、字數限20、不可空白、不能跟帳號重複(strcat)或與帳號相似(strstr、非嚴格比對)
 static char* password(char* account_name){
-    int access = 0,len;
-    char *corres_password = (char *)malloc(sizeof(char) * 100);
+    int access = 0,len,temp;
+    char *corres_password = (char *)malloc(sizeof(char) * 100),*upload_password;
+    int big_word = 0, small_word = 0, number = 0;
     origin:while(access != 1){
         printf("Input your password:(the password need at least two big characters and small characters, and also at least one number)\n");
+        printf("If you afraid to type the password on terminal, you can enter your password in a text file and upload it\n");
+        printf("    [1]type\n");
+        printf("    [2]upload text file\n");
+        scanf("%d",&temp);
+        getchar();
+        if(temp == 2){
+            upload_password = malloc(sizeof(char) * 100);
+            printf("please enter your file name(please put your file into the folder)\n");
+            fgets(upload_password,100,stdin);
+            len = strlen(upload_password);
+            *(upload_password+len-1) = '\0';
+            // printf("%s\n",upload_password);
+            FILE *file = fopen(upload_password,"r");
+            fgets(corres_password,100,file);
+            len = strlen(corres_password);
+            *(corres_password+len-1) = '\0';
+            // printf("%s\n",corres_password);
+            goto upload;
+        }
+        printf("Input your password\n");
         fgets(corres_password, 21, stdin);
-        int len = strlen(corres_password);
+        len = strlen(corres_password);
         *(corres_password+len-1) = '\0';
         // printf("%s\n",corres_password);
         if (*(corres_password) == '\n'){
@@ -78,9 +99,14 @@ static char* password(char* account_name){
             printf("Please try a new password: ");
             goto origin;
         }
-        int big_word = 0, small_word = 0, number = 0;
+        upload:
+        // printf("%s\n",corres_password);
+        big_word = 0;
+        small_word = 0;
+        number = 0;
+        len = strlen(corres_password);
         for(int i = 0; i < len; i++){
-            // printf("c:%c\n",*(corres_password + i));
+            printf("c:%c\n",*(corres_password + i));
             if (*(corres_password + i) <= 'Z' && *(corres_password + i) >= 'A'){
                 big_word++;
             }
@@ -97,7 +123,7 @@ static char* password(char* account_name){
             }
         }
         if(big_word < 2 || small_word < 2 || number == 0){
-            printf("Your account name is in the wrong format.\n");
+            printf("Your password is in the wrong format.\n");
             printf("Please retype it again\n");
             goto origin;
         }
