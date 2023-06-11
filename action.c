@@ -291,7 +291,11 @@ char *comment_choose(struct linked_list *list,char user[],int page){
     ID += page*10;
     for(int i = 0;i<ID;i++){
         list = list->next;
+        if(list == NULL){
+            return NULL;
+        }
     }
+    printf("%s\n",list->comment_txt);
     return list->comment_txt;
 }
 

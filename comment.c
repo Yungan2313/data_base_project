@@ -213,11 +213,13 @@ static void delete_comment(char comment_collect_txt[]){
 // }
 //將comment回傳
 char *comment_search(char txt[]){
+    // printf("%s", txt);
     char *comment = malloc(sizeof(char)*1000);
     char path[100];
     DIR *dir = opendir("comment_collect");
     sprintf(path,"comment_collect/%s",txt);
     FILE *comment_file = fopen(path,"r");
     fgets(comment, sizeof(char)*1000, comment_file);
+    // printf("-----------------\n%s\n",comment);
     return comment;
 }

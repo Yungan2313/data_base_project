@@ -74,7 +74,12 @@ int comment_UI(struct comment_list *list, int page){
             printf("-");
     }
     printf("\n");
-    printf("%s",comment_search(node->comment_txt));
+    if(strcmp(node->comment_txt, "0") == 0){
+        printf("no comment\n");
+    }
+    else{
+        printf("%s\n",comment_search(node->comment_txt));
+    }
     for(int l = 0;l <= 63; l++){
             printf("-");
     }

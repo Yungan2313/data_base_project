@@ -10,9 +10,11 @@ char *user_account(char *data_base_txt){
     int i = 0;
     char *user = malloc(sizeof(char)*100);
     while(*(data_base_txt+i)!= '.'){
+        // printf("%c", *(data_base_txt+i));
         *(user+i) = *(data_base_txt+i);
         i++;
     }
+    *(user+i) = '\0';
     return user;
 }
 
@@ -143,10 +145,22 @@ int main(){
                     continue;
                 case 7://搜尋list裡的位置，輸出txt，丟到UI，記得做page切換
                     comment_page = 0;
-                    comment_txt = comment_choose(list,user,comment_page);
-                    comment_list = comment_list_read(comment_txt);
+                    while(1){
+                        // printf("%s %d\n", user,comment_page);
+                        comment_txt = comment_choose(list,user,comment_page);
+                        if(comment_txt == NULL){
+                            printf("please enter the correct ID\n");
+                            continue;
+                        }
+                        comment_list = comment_list_read(comment_txt);
+                        break;
+                    }
                     while(1){
                         if(comment_UI(comment_list,comment_page) == -1){
+                            if(comment_page == 0){
+                                printf("there is no comment\n");
+                                break;
+                            }
                             comment_page--;
                             printf("there is no next page\n");
                             continue;

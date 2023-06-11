@@ -106,7 +106,7 @@ static char* password(char* account_name){
         number = 0;
         len = strlen(corres_password);
         for(int i = 0; i < len; i++){
-            printf("c:%c\n",*(corres_password + i));
+            // printf("c:%c\n",*(corres_password + i));
             if (*(corres_password + i) <= 'Z' && *(corres_password + i) >= 'A'){
                 big_word++;
             }
