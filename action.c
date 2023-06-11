@@ -40,7 +40,6 @@ struct linked_list *add_list(struct linked_list *list,char user[]){
         fgets(food_name, sizeof(char)*21, stdin);
         len = strlen(food_name);
         *(food_name+len-1) = '\0';
-        // printf("%s\n",food_name);
         food_name = change_space(food_name);
         printf("please enter the store of the food:(the limit of the char is 20)\n");
         printf("enter: ");
@@ -89,10 +88,16 @@ struct linked_list *delete_list(struct linked_list *list,char user[],int page){
     // printf("%d",ID);
     for(int i=0;i<ID;i++){
         node = node->next;
+        if(node==NULL){
+            printf("there is no data to delete!\n");
+            return list;
+        }
     }
     // printf("%s %s\n",node->food_name,node->store_name);
     delete_data(node->food_name,node->store_name,user);
+    // printf("here\n");
     list = delete_linked_list(list,ID);
+    printf("here\n");
     return list;
 }
 //排列(回傳的只有兩個，price、score)
