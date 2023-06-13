@@ -36,6 +36,7 @@ int main(){
         printf("enter: ");
         scanf("%d",&choose);
         getchar();
+        system("cls");
         if(choose == 1){
             database_txt = login();
             if(database_txt == NULL){
@@ -79,20 +80,25 @@ int main(){
             switch(temp){
                 case 1:
                     page++;
+                    system("cls");
                     continue;
                 case 2:
                     page--;
+                    system("cls");
                     if(page<0){
                         page++;
+                        system("cls");
                         printf("you already at the first page!\n");
                     }
                     continue;
                 case 3:
                     // printf("%s %s----------------------------\n",user,database_txt);//----------------------------------------------------------------
                     list = add_list(list,user);
+                    system("cls");
                     continue;
                 case 4:
                     list = delete_list(list,user,page);
+                    system("cls");
                     continue;
                 case 5:
                     printf("which one is your basic type?\n");
@@ -109,14 +115,17 @@ int main(){
                     getchar();
                     list = sort_list(list,type,order);
                     page = 0;
+                    system("cls");
                     continue;
                 case 6:
                     search_page = 0;
                     search_linked_list = search_list(list);
+                    system("cls");
                     while(1){
                         if(database_UI(search_linked_list,search_page) == -1){
                             search_page--;
                             printf("there is no next page\n");
+                            system("cls");
                             continue;
                         }
                         printf("action you can do:\n");
@@ -126,18 +135,23 @@ int main(){
                         printf("enter: ");
                         scanf("%d",&choose);
                         getchar();
+                        system("cls");
                         switch(choose){
                             case 1:
                                 search_page++;
+                                system("cls");
                                 continue;
                             case 2:
                                 search_page--;
+                                system("cls");
                                 if(search_page <0){
                                     search_page++;
+                                    system("cls");
                                     printf("you already at the first page!\n");
                                 }
                                 continue;
                             case 3:
+                                system("cls");
                                 break;
                         }
                         break;
@@ -145,10 +159,12 @@ int main(){
                     continue;
                 case 7://搜尋list裡的位置，輸出txt，丟到UI，記得做page切換
                     comment_page = 0;
+                    system("cls");
                     while(1){
                         // printf("%s %d\n", user,comment_page);
                         comment_txt = comment_choose(list,user,comment_page);
                         if(comment_txt == NULL){
+                            system("cls");
                             printf("please enter the correct ID\n");
                             continue;
                         }
@@ -158,10 +174,12 @@ int main(){
                     while(1){
                         if(comment_UI(comment_list,comment_page) == -1){
                             if(comment_page == 0){
+                                system("cls");
                                 printf("there is no comment\n");
                                 break;
                             }
                             comment_page--;
+                            system("cls");
                             printf("there is no next page\n");
                             continue;
                         }
@@ -175,15 +193,19 @@ int main(){
                         switch(choose){
                             case 1:
                                 comment_page++;
+                                system("cls");
                                 continue;
                             case 2:
                                 comment_page--;
+                                system("cls");
                                 if(comment_page <0){
                                     comment_page++;
+                                    system("cls");
                                     printf("you already at the first page!\n");
                                 }
                                 continue;
                             case 3:
+                                system("cls");
                                 break;
                         }
                         break;
@@ -198,8 +220,10 @@ int main(){
                     continue;
                 case 8:
                     log_out(list,user);
+                    system("cls");
                     break;
             }
+            system("cls");
             break;
         }
 

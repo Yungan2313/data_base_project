@@ -11,17 +11,17 @@ char *login()
     //reads txt file
     list = acpd_read("acpd.txt");
 
-    static char username_input[20], password_input[20];
+    static char username_input[21], password_input[21];
     memset(username_input, 0, sizeof(username_input));
     memset(password_input, 0, sizeof(password_input));
 
     start:
     printf("Username: ");
     scanf("%s", username_input);
-
+    system("cls");
     printf("Password: ");
     scanf("%s", password_input);
-
+    system("cls");
     //compare using linked list rather than arrays (done)
     struct acpd_list *current=list;
     while(current!=NULL)
@@ -42,8 +42,10 @@ char *login()
 
     while(1)
     {
-        printf("[0]Yes\n[1]register a new one\n[2]exit");
+        printf("[0]Yes\n[1]register a new one\n[2]exit\n");
+        printf("enter: ");
         scanf("%d", &yn);
+        system("cls");
         if(yn==0)
         {
             goto start;

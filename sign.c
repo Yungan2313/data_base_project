@@ -15,11 +15,14 @@ char *account(){
     while(access != 1){
         origin:
         printf("Do you want to create a new account?\n[1]Yes\t[2]No\n");
+        printf("enter: ");
         scanf("%d", &choice);
+        system("cls");
         if(choice == 1){
             printf("Input your account:(the account name should only use characters and numbers)\n");
             getchar();
             fgets(account_name, 21, stdin);
+            system("cls");
             if (*(account_name) == '\n'){
                 printf("Where is your account?\n");
                 printf("Please retype it again\n");
@@ -68,12 +71,16 @@ static char* password(char* account_name){
         printf("If you are afraid to type the password on terminal, you can enter your password in a text file and upload it\n");
         printf("    [1]type\n");
         printf("    [2]upload text file\n");
+        printf("enter: ");
         scanf("%d",&temp);
         getchar();
+        system("cls");
         if(temp == 2){
             upload_password = malloc(sizeof(char) * 100);
             printf("please enter your file name(please put your file into the folder)\n");
+            printf("enter: ");
             fgets(upload_password,100,stdin);
+            system("cls");
             len = strlen(upload_password);
             *(upload_password+len-1) = '\0';
             // printf("%s\n",upload_password);
@@ -85,7 +92,9 @@ static char* password(char* account_name){
             goto upload;
         }
         printf("Input your password\n");
+        printf("enter: ");
         fgets(corres_password, 21, stdin);
+        system("cls");
         len = strlen(corres_password);
         *(corres_password+len-1) = '\0';
         // printf("%s\n",corres_password);

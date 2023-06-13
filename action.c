@@ -295,7 +295,7 @@ char *comment_choose(struct linked_list *list,char user[],int page){
             return NULL;
         }
     }
-    printf("%s\n",list->comment_txt);
+    // printf("%s\n",list->comment_txt);
     return list->comment_txt;
 }
 
