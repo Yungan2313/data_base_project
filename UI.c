@@ -20,14 +20,14 @@ int database_UI(struct linked_list *list,int page){
     printf("\n");
     
     for(int i = 0;i < 10;node = node->next){
-        food_name_length = strlen(node->food_name);
-        store_name_length = strlen(node->store_name);
-        fpadd = (20 - food_name_length) / 2;
-        food_name_length%2==1?food_name_length++:fpadd;
-        spadd = (20 - store_name_length) / 2;
-        store_name_length%2==0?store_name_length--:spadd;
         // printf("%d:%d %d\n",i,fpadd,spadd);
         if(node != NULL){
+            food_name_length = strlen(node->food_name);
+            store_name_length = strlen(node->store_name);
+            fpadd = (20 - food_name_length) / 2;
+            food_name_length%2==1?food_name_length++:fpadd;
+            spadd = (20 - store_name_length) / 2;
+            store_name_length%2==0?store_name_length--:spadd;
             // printf("|%4d  |%*s%-*s|%*s%-*s|%*d  |%*.1f  |\n",i,10 + fpadd, node->food_name, 10 - fpadd, "",10 + spadd, node->store_name, 10 - spadd, "",7,7,node->price,7,node->score);
             // printf("|%4d  |%*s|%*s|%*d  |%*.1f  |\n",i, 20, node->food_name, 20, node->store_name, 7, node->price, 7, node->score);
             printf("|%4d  |%*s%*s|%*s%*s|%*d  |%*.1f  |\n",i, fpadd+food_name_length, node->food_name,fpadd,"", spadd+store_name_length, node->store_name,spadd,"", 7, node->price, 7, node->score);
