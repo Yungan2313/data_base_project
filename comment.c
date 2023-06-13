@@ -64,12 +64,15 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
             FILE *p = fopen(path, "a");
             if(comment_bool == 2){//要寫comment
                 strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
-                if(insert_comment(comment_collect_txt) == -1){
-                    fprintf(p, "%s %0.1f %c\n",user,score,'0');
-                }
-                else{
-                    fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
-                }
+                fprintf(p, "%s %0.1f %c\n",user,score,'0');
+                closedir(dir);
+                insert_comment(comment_collect_txt);
+                // if(insert_comment(comment_collect_txt) == -1){
+                //    
+                // }
+                // else{
+                //     fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
+                // }
             }
             else{
                 fprintf(p, "%s %0.1f %c\n",user,score,'0');
@@ -86,12 +89,15 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
             strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
             // printf("%s %0.1f %s\n",user,score,comment_collect_txt);
             // printf("%s\n",comment_collect_txt);//---------------------------------------------------------------------------------------------
-            if(insert_comment(comment_collect_txt) == -1){
-                fprintf(new_file, "%s %0.1f %c\n",user,score,'0');
-            }
-            else{
-                fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
-            }
+            fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
+            closedir(dir);
+            insert_comment(comment_collect_txt);
+            // if(insert_comment(comment_collect_txt) == -1){
+            //     fprintf(new_file, "%s %0.1f %c\n",user,score,'0');
+            // }
+            // else{
+            //     fprintf(new_file, "%s %0.1f %s\n",user,score,comment_collect_txt);
+            // }
             
         }
         else{
@@ -99,7 +105,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
         }
         fclose(new_file);
     }
-    closedir(dir);
+    //closedir(dir);
 }
 //新增一個新的txt檔儲存comment，程式會包含input
 static int insert_comment(char *comment_collect_txt){
