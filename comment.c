@@ -64,7 +64,7 @@ void insert_data(char food_name[],char store_name[],char user[],float score,int 
             FILE *p = fopen(path, "a");
             if(comment_bool == 2){//要寫comment
                 strcat(strcat(strcat(strcat(strcat(strcpy(comment_collect_txt,user),"_"),food_name),"_"),store_name),".txt");//user_food_store.txt
-                fprintf(p, "%s %0.1f %c\n",user,score,'0');
+                fprintf(p, "%s %0.1f %s\n",user,score,comment_collect_txt);
                 closedir(dir);
                 insert_comment(comment_collect_txt);
                 // if(insert_comment(comment_collect_txt) == -1){

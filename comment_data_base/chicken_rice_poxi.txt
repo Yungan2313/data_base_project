@@ -1,0 +1,3 @@
+qwerty 2.0 qwerty_chicken_rice_poxi.txt
+l 0.1 0
+qwerty 2.0 0

@@ -159,7 +159,6 @@ int main(){
                     continue;
                 case 7://搜尋list裡的位置，輸出txt，丟到UI，記得做page切換
                     comment_page = 0;
-                    system("cls");
                     while(1){
                         // printf("%s %d\n", user,comment_page);
                         comment_txt = comment_choose(list,user,comment_page);
@@ -171,6 +170,7 @@ int main(){
                         comment_list = comment_list_read(comment_txt);
                         break;
                     }
+                    system("cls");
                     while(1){
                         if(comment_UI(comment_list,comment_page) == -1){
                             if(comment_page == 0){
