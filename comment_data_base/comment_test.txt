@@ -1,2 +1,0 @@
-lanpa 9.5 lanpa_comment_test.txt
-lanchao 8.6 lanchao_comment_test.txt

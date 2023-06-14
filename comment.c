@@ -152,30 +152,32 @@ void delete_data(char food_name[],char store_name[],char user[]){
             sprintf(path_temp, "comment_data_base/%s", "temp.txt"); 
             strcpy(path_temp_cpy, path_temp);
             FILE *p = fopen(path, "r");
-            FILE *temp_file = fopen(path_temp, "w");
+            FILE *temp_file = fopen(path_temp, "a");
             char *c[line_count],tempc[1000];
-            int i = 0;
+            int i = 0,check = 0;
             while(fgets(tempc,100,p)!=NULL){
                 int temp = strlen(tempc);
                 char account[100],comment_txt_check[100];
                 float score;
                 c[i] = strdup(tempc);
                 sscanf(c[i],"%s %f %s",account,&score,comment_txt_check);
-                if(strcmp(comment_txt_check,"0")!=0){
-                    // printf("ok delete\n");
-                    delete_comment(comment_txt_check);
-                }
                 // printf("%s %s\n",account,user);
                 if(strcmp(account,user) == 0){
+                    if(strcmp(comment_txt_check,"0")!=0){
+                        // printf("ok delete\n");
+                        delete_comment(comment_txt_check);
+                    }
                     continue;
                 }
-                fputs(tempc,temp_file);
+                check = 1;
+                fprintf(temp_file,tempc);
                 i++;
             }
             for (int j = 0; j < i; j++) {
                 free(c[j]);
             }
-            if(fgets(tempc,100,temp_file) == NULL){
+            // scanf("%d",&check);
+            if(check == 0){
                 fclose(p);
                 fclose(temp_file);
                 remove(path_cpy);
@@ -188,11 +190,6 @@ void delete_data(char food_name[],char store_name[],char user[]){
                 // printf("%s\n",path_temp_cpy);
                 rename(path_temp_cpy,path_cpy);
             }
-            fclose(p);
-            fclose(temp_file);
-            remove(path_cpy);
-            // printf("%s\n",path_temp_cpy);
-            rename(path_temp_cpy,path_cpy);
             break;
         }
     }

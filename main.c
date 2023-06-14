@@ -48,6 +48,9 @@ int main(){
         }
         else if(choose == 2){
             database_txt = account();
+            if(database_txt == NULL){
+                continue;
+            }
         }
         else if(choose == 3){
             break;
@@ -59,6 +62,7 @@ int main(){
         list = data_base_read(database_txt);
         page = 0;
         free_linked_list(search_linked_list);
+        printf("%s %s\n", database_txt,user);
         while(1){
             if(database_UI(list,page)==-1){
                 page--;

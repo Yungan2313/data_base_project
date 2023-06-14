@@ -1,3 +1,0 @@
-chicken_rice poxi 50 0.1 chicken_rice_poxi.txt
-french_frice mcdonald 40 9.6 french_frice_mcdonald.txt
-soda mcdonald 38 9.2 soda_mcdonald.txt

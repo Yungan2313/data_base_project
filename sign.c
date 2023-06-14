@@ -76,7 +76,6 @@ static char* password(char* account_name){
         getchar();
         system("cls");
         if(temp == 2){
-            free(upload_password);
             upload_password = malloc(sizeof(char) * 100);
             printf("please enter your file name(please put your file into the folder)\n");
             printf("enter: ");

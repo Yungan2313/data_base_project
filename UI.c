@@ -7,7 +7,7 @@ int database_UI(struct linked_list *list,int page){
     struct linked_list *node = list;
     int food_name_length,store_name_length,fpadd,spadd;
     for(int i = 0;i<page*10;node = node->next){
-        printf("%d:%s\n",i,node->food_name);
+        // printf("%d:%s\n",i,node->food_name);
         if(node == NULL){
            return -1;
         }
